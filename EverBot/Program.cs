@@ -215,31 +215,31 @@ class Program
             {
                 if (e.Message.Content.Contains("chuck", StringComparison.OrdinalIgnoreCase) || e.Message.Content.Contains("norris", StringComparison.OrdinalIgnoreCase))
                 {
-                    //if (e.Message.Author.IsBot)
-                    //{
+                    if (e.Message.Author.IsBot)
+                    {
 
-                    //}
-                    //else
-                    //{
-                    //    WebClient chuckClient = new WebClient();
-                    //    var chuckRequest = chuckClient.DownloadString("http://api.icndb.com/jokes/random");
-                    //    var chuckJokeString = JsonConvert.DeserializeObject<dynamic>(chuckRequest);
-                    //    var chuckJoke = chuckJokeString.value.joke;
-                    //    string chuckJokeFormatted = HttpUtility.HtmlDecode(chuckJoke);
-                    //    await e.Message.RespondAsync($"{chuckJokeString.value.joke}");
+                    }
+                    else
+                    {
+                        WebClient chuckClient = new WebClient();
+                        var chuckRequest = chuckClient.DownloadString("http://api.icndb.com/jokes/random");
+                        var chuckJokeString = JsonConvert.DeserializeObject<dynamic>(chuckRequest);
+                        var chuckJoke = chuckJokeString.value.joke;
+                        //string chuckJokeFormatted = HttpUtility.HtmlDecode(chuckJoke);
+                        await e.Message.RespondAsync($"hah, {chuckJokeString.value.joke}");
 
-                    //}
-
-
+                    }
 
 
-                    WebClient chuckClient = new WebClient();
-                    var chuckJoke = chuckClient.DownloadString("http://api.icndb.com/jokes/random");
-                    var jokes = JsonConvert.DeserializeObject<dynamic>(chuckJoke);
-                    //var serializer = new json
-                    Console.WriteLine(jokes.value.joke);
-                    var returnableJoke = jokes.value.joke;
-                    await e.Message.RespondAsync($"{returnableJoke}");
+
+
+                    //WebClient chuckClient = new WebClient();
+                    //var chuckJoke = chuckClient.DownloadString("http://api.icndb.com/jokes/random");
+                    //var jokes = JsonConvert.DeserializeObject<dynamic>(chuckJoke);
+                    ////var serializer = new json
+                    //Console.WriteLine(jokes.value.joke);
+                    //var returnableJoke = jokes.value.joke;
+                    //await e.Message.RespondAsync($"{returnableJoke}");
                 }
             };
 
