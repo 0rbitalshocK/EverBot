@@ -10,6 +10,9 @@ using OpenWeatherMap.Standard;
 using ICanHazDadJoke.NET;
 using System.Linq;
 using SeeShahp;
+using EverBot;
+
+
 
 
 
@@ -35,7 +38,7 @@ using SeeShahp;
 
 namespace MyFirstBot
 {
-
+    
     public static class StringExtensions
     {
         public static bool Contains(this string source, string toCheck, StringComparison comp)
@@ -100,9 +103,11 @@ namespace MyFirstBot
 
 class Program
     {
+        
         static DiscordClient discord;
         static CommandsNextModule commands;
-      
+        static VulgarBot Foaas;
+
 
         static void Main(string[] args)
         {
@@ -111,6 +116,7 @@ class Program
 
         static async Task MainAsync(string[] args)
         {
+            VulgarBot FuckOff = new VulgarBot();
             var libraryName = "dadJokesForOrbitalshocKsDiscord";
             var contactUri = "bronco8622@gmail.com";
             int SheffCount = 0;        
@@ -167,6 +173,39 @@ class Program
                 }
             };
 
+
+            //Fuck off generator brahhhhhhhhhh
+            discord.MessageCreated += async e =>
+            {
+                if (e.Message.Author.IsBot)
+                {
+                    //Do nothing, or it'll make an infinite loop.
+                }
+                else
+                {
+                    var random = new Random();
+                    var randomResult = random.Next(1, 1000);
+                    Console.WriteLine(randomResult);
+                    bool fireMessage = false;
+                    if (e.Author.Username.Contains("XLGrandma", StringComparison.OrdinalIgnoreCase)) 
+                    {
+                        fireMessage = randomResult >= 600;
+                    }
+                    else
+                    {
+                        fireMessage = randomResult >= 900;                        
+                    }
+                    if(fireMessage) 
+                    {
+                        var result = await VulgarBot.RandomAsync("Paddle Tennis, Inc.", "a", e.Message.Author.Mention, "slurp", "Bag of Dicks", "Edward Scissorhands", "sad", "bad", "condoms", "English");
+                        var trimmedResult = result.Remove(result.Length - 3);
+                        await Task.Delay(3000);
+                        await e.Message.RespondAsync(trimmedResult);
+                    }
+                    
+                }
+
+            };
 
 
 
