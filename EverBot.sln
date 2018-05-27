@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EverBot", "EverBot\EverBot.csproj", "{C97884C6-5A8D-4C51-AC35-B604A5BD85B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EverBot", "EverBot\EverBot.csproj", "{6CD95512-4A73-4CE6-9160-977E888E2900}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{959AF119-FEC0-4A21-B9B6-7138DED16090}"
+	ProjectSection(SolutionItems) = preProject
+		EverBot\VulgarBot.cs = EverBot\VulgarBot.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +16,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C97884C6-5A8D-4C51-AC35-B604A5BD85B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C97884C6-5A8D-4C51-AC35-B604A5BD85B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C97884C6-5A8D-4C51-AC35-B604A5BD85B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C97884C6-5A8D-4C51-AC35-B604A5BD85B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CD95512-4A73-4CE6-9160-977E888E2900}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CD95512-4A73-4CE6-9160-977E888E2900}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CD95512-4A73-4CE6-9160-977E888E2900}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CD95512-4A73-4CE6-9160-977E888E2900}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {FF410E79-AC94-4A32-8CE0-E56447F4CC3E}
+		SolutionGuid = {5F6F8EA1-66F6-476B-8200-D94BBA2FBF49}
 	EndGlobalSection
 EndGlobal

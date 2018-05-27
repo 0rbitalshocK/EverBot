@@ -13,32 +13,9 @@ using SeeShahp;
 using EverBot;
 
 
-
-
-
-
-
-
-
-
-
-
-
-// i've put a whole lot of lines between different sections so you can focus on small parts to better understand what they are doing. 
-//the very first class you see "String extensions" is an extension string i googled, because in programming...ignoring case (i.e MoRgAn) is difficult. this allows me to ignore case for dad jokes below.
-
-//the second class is a list of Commands. They consist of three major parts. 
-//First the [Command("commandhere")] portion. Whatever is in the "" is what the user will type to initiate that command. 
-//Second, the Public async Task, which is just for coding...you can call the task whatever you like but i would call it whatever you called the command above it.
-//third, the Await where you respond with something. ctx is just what i chose to call the Commandcontext but you can call it whatever you like. Commandcontext (in the cases below, ctx) contain all the stuff from that message....who sent it, when did they send it, etc. etc. 
-//access that information by doing ctx. and look at the list of available things (with wrenches next to them).  for whatever reason the username is commandcontext.User.Mention not just user.
-//i think what this is... is that if i type in morgusborg in the chat it doesn't mention you it just types your username. adding .mention to the end does the hashtag at the front. 
-
-
-
-namespace MyFirstBot
+namespace EverBot
 {
-    
+
     public static class StringExtensions
     {
         public static bool Contains(this string source, string toCheck, StringComparison comp)
@@ -46,7 +23,7 @@ namespace MyFirstBot
             return source?.IndexOf(toCheck, comp) >= 0;
         }
     }
-        public class MyCommands
+    public class MyCommands
     {
         //Hello Command
         [Command("hi")]
@@ -61,12 +38,12 @@ namespace MyFirstBot
             var rnd = new Random();
             await ctx.RespondAsync($"🎲 Your random number is: {rnd.Next(min, max)}");
         }
-        [Command ("Sheff")]
+        [Command("Sheff")]
         public async Task SheffJoke(CommandContext ctx)
         {
             await ctx.RespondAsync($"Hah, 1080pleb");
         }
-        [Command ("Weather")]
+        [Command("Weather")]
         public async Task Weather(CommandContext ctx, string zip)
         {
             string key = "2ac2e41aef5c35d7850af6871d5daa69";
@@ -83,7 +60,7 @@ namespace MyFirstBot
                 await ctx.RespondAsync($"{ctx.User.Mention}, here's the deets: {data.weather[0].description}\n Low of {((9.0 / 5.0) * data.main.temp_min) + 32} with a high of {((9.0 / 5.0) * data.main.temp_max) + 32}");
                 Main main = new Main();
                 Console.WriteLine($"weather: {data.weather[0].main}\n {data.weather[0].description}");
-                
+
             }
             else
             {
@@ -91,19 +68,19 @@ namespace MyFirstBot
                 //split city and state and pray they used a damn comma!!
 
 
-                string city = zip.Substring(0,zip.IndexOf(","));
-                string state = zip.Substring(zip.LastIndexOf(",")+1);
+                string city = zip.Substring(0, zip.IndexOf(","));
+                string state = zip.Substring(zip.LastIndexOf(",") + 1);
                 Console.WriteLine($"City: {city} \nState:{state}");
-                Task getWeatherCity = Task.Run(async () => { dataCity = await forecast.GetWeatherDataByCityNameAsync(key,city,"us",WeatherUnits.imperial); });
+                Task getWeatherCity = Task.Run(async () => { dataCity = await forecast.GetWeatherDataByCityNameAsync(key, city, "us", WeatherUnits.imperial); });
                 getWeatherCity.Wait();
                 await ctx.RespondAsync($"{ctx.User.Mention}, here's the deets: {dataCity.weather[0].description}\n Low of {dataCity.main.temp_min} with a high of {dataCity.main.temp_max}");
             }
         }
     }
 
-class Program
+    class Program
     {
-        
+
         static DiscordClient discord;
         static CommandsNextModule commands;
         static VulgarBot Foaas;
@@ -119,7 +96,7 @@ class Program
             VulgarBot FuckOff = new VulgarBot();
             var libraryName = "dadJokesForOrbitalshocKsDiscord";
             var contactUri = "bronco8622@gmail.com";
-            int SheffCount = 0;        
+            int SheffCount = 0;
             discord = new DiscordClient(new DiscordConfiguration
             {
                 Token = "NDQ4MDA4NDQxNzk4MTk3MjQ5.DeP4bQ.kcBpbZbpA6FjdvFtsGIkKtdhDwY",
@@ -127,7 +104,7 @@ class Program
                 UseInternalLogHandler = true,
                 LogLevel = LogLevel.Debug
             });
-            
+
 
 
 
@@ -187,22 +164,22 @@ class Program
                     var randomResult = random.Next(1, 1000);
                     Console.WriteLine(randomResult);
                     bool fireMessage = false;
-                    if (e.Author.Username.Contains("XLGrandma", StringComparison.OrdinalIgnoreCase)) 
+                    if (e.Author.Username.Contains("XLGrandma", StringComparison.OrdinalIgnoreCase))
                     {
                         fireMessage = randomResult >= 600;
                     }
                     else
                     {
-                        fireMessage = randomResult >= 900;                        
+                        fireMessage = randomResult >= 900;
                     }
-                    if(fireMessage) 
+                    if (fireMessage)
                     {
                         var result = await VulgarBot.RandomAsync("Paddle Tennis, Inc.", "a", e.Message.Author.Mention, "slurp", "Bag of Dicks", "Edward Scissorhands", "sad", "bad", "condoms", "English");
                         var trimmedResult = result.Remove(result.Length - 3);
                         await Task.Delay(3000);
                         await e.Message.RespondAsync(trimmedResult);
                     }
-                    
+
                 }
 
             };
@@ -299,7 +276,7 @@ class Program
             //Registers the commands created above in the Public Class MyCommands section at the very top of solution
             commands = discord.UseCommandsNext(new CommandsNextConfiguration
             {
-                StringPrefix = ";;",                
+                StringPrefix = ";;",
             });
             commands.RegisterCommands<MyCommands>();
             await discord.ConnectAsync();
